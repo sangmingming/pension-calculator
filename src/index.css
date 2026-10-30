@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* ---- 自定义语义令牌（暖纸底 / 墨青 / 松绿） ---- */
+    --bg: hsl(45 30% 97%);          /* 暖纸白页面底 */
+    --bg-warm: hsl(45 28% 94%);     /* 暖色次级底 */
+    --surface: hsl(48 33% 99%);     /* 表单与输入框底 */
+    --ink: hsl(45 14% 10%);         /* 墨青主文字 */
+    --ink-soft: hsl(45 8% 32%);     /* 次级文字 */
+    --ink-faint: hsl(45 6% 46%);    /* 辅助文字 */
+    --line: hsl(45 16% 87%);        /* 发丝线 */
+    --pine: hsl(157 49% 23%);       /* 松绿主色 */
+    --pine-deep: hsl(158 52% 18%);
+    --pine-soft: hsl(150 30% 93%);  /* 松绿浅底 */
+    --on-accent: hsl(48 30% 94%);   /* 主色按钮上的文字 */
+    --result-bg: hsl(45 14% 10%);   /* 两种主题共用的深色结果区 */
+    --pine-bright: hsl(152 45% 55%);/* 深底上的亮绿数据色 */
+    --gold: hsl(38 70% 58%);        /* 深底上的金数据色 */
+    --paper: hsl(48 30% 94%);       /* 深底上的主文字 */
+    --paper-dim: hsl(45 10% 62%);   /* 深底上的次级文字 */
+    --hairline: hsl(45 12% 26%);    /* 深底上的发丝线 */
+    --danger: hsl(5 68% 42%);       /* 错误/警示 */
+
+    /* ---- shadcn 令牌映射 ---- */
+    --background: 45 30% 97%;
+    --foreground: 45 14% 10%;
+    --card: 48 33% 99%;
+    --card-foreground: 45 14% 10%;
+    --popover: 48 33% 99%;
+    --popover-foreground: 45 14% 10%;
+    --primary: 157 49% 23%;
+    --primary-foreground: 48 30% 94%;
+    --secondary: 45 28% 94%;
+    --secondary-foreground: 45 14% 10%;
+    --muted: 45 28% 94%;
+    --muted-foreground: 45 8% 32%;
+    --accent: 150 30% 93%;
+    --accent-foreground: 45 14% 10%;
+    --destructive: 5 68% 42%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 45 16% 87%;
+    --input: 45 16% 87%;
+    --ring: 157 49% 23%;
+    --radius: 0.5rem;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* 保留暖色与松绿色相，按深色层级提升文字和主色亮度 */
+    --bg: hsl(45 12% 7%);
+    --bg-warm: hsl(45 10% 11%);
+    --surface: hsl(45 11% 9%);
+    --ink: hsl(48 18% 92%);
+    --ink-soft: hsl(45 8% 75%);
+    --ink-faint: hsl(45 6% 63%);
+    --line: hsl(45 9% 22%);
+    --pine: hsl(152 38% 64%);
+    --pine-deep: hsl(152 42% 72%);
+    --pine-soft: hsl(154 20% 15%);
+    --on-accent: hsl(158 45% 10%);
+    --result-bg: hsl(45 14% 10%);
+    --danger: hsl(5 75% 68%);
+
+    --background: 45 12% 7%;
+    --foreground: 48 18% 92%;
+    --card: 45 11% 9%;
+    --card-foreground: 48 18% 92%;
+    --popover: 45 11% 9%;
+    --popover-foreground: 48 18% 92%;
+    --primary: 152 38% 64%;
+    --primary-foreground: 158 45% 10%;
+    --secondary: 45 10% 11%;
+    --secondary-foreground: 48 18% 92%;
+    --muted: 45 10% 11%;
+    --muted-foreground: 45 6% 63%;
+    --accent: 154 20% 15%;
+    --accent-foreground: 48 18% 92%;
+    --destructive: 5 75% 68%;
+    --destructive-foreground: 45 12% 7%;
+    --border: 45 9% 22%;
+    --input: 45 9% 22%;
+    --ring: 152 38% 64%;
+    --sidebar-background: 45 11% 9%;
+    --sidebar-foreground: 48 18% 92%;
+    --sidebar-primary: 152 38% 64%;
+    --sidebar-primary-foreground: 158 45% 10%;
+    --sidebar-accent: 154 20% 15%;
+    --sidebar-accent-foreground: 48 18% 92%;
+    --sidebar-border: 45 9% 22%;
+    --sidebar-ring: 152 38% 64%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family:
+      "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+      "Noto Sans CJK SC", "Source Han Sans SC", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background: hsl(157 49% 23% / 0.18);
+  }
+}
+
+@layer utilities {
+  /* 数字统一使用等宽字体，便于对齐与阅读 */
+  .num {
+    font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
